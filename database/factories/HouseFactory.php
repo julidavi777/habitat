@@ -32,14 +32,14 @@ class HouseFactory extends Factory
             'baths' => $this->faker->numberBetween(1, 3),
             'square_meters' => $this->faker->numberBetween(100, 500),
             'cover' => $this->faker->randomElement([
-                'property-1.jpg',
-                'property-2.jpg',
-                'property-3.jpg',
-                'property-4.jpg',
-                'property-5.jpg',
-                'property-6.jpg',
-                'property-7.jpg',
-                'property-8.jpg',
+                'uploads/property-1.jpg',
+                'uploads/property-2.jpg',
+                'uploads/property-3.jpg',
+                'uploads/property-4.jpg',
+                'uploads/property-5.jpg',
+                'uploads/property-6.jpg',
+                'uploads/property-7.jpg',
+                'uploads/property-8.jpg',
             ]),
         ];
     }

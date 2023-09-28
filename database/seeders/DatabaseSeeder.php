@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\House; 
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,11 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-/*         $this->call([
-    
-]);
-*/
-        House::factory(16)->create();
+    $this->call(HouseSeeder::class); 
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

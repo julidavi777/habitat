@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage; 
 use App\Models\House;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; 
 
 class HouseController extends Controller
 {
@@ -20,7 +22,7 @@ class HouseController extends Controller
      */
     public function create()
     {
-        return view('houses.pseudoindex');
+        return view('houses.create');
     }
 
     /**
@@ -28,7 +30,14 @@ class HouseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $houses =  request()->except('_token');
+
+         if($request->hasFile('cover')){
+             $houses['cover']= $request->file('cover')->store('uploads', 'public');
+             House::insert($houses);
+             return redirect('houses')->with('msg', 'Casa añadida correctamente');
+         }
+        return $houses; 
     }
 
     /**
@@ -38,7 +47,7 @@ class HouseController extends Controller
     {
         $house = House::find($id);
         return view('houses.show', compact('house')); 
-        // return $house; 
+        
     }
 
     /**
@@ -46,7 +55,8 @@ class HouseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $house = House::find($id);
+        return view('houses.edit', compact('house')); 
     }
 
     /**
@@ -54,14 +64,25 @@ class HouseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $house = House::findOrFail($id);
+        Storage::delete(['public/', $house->cover]);
+        $house['cover']= $request->file('cover')->store('uploads', 'public');
+        
+        House::where('id', '=', $id)->update($house);
+        $house = House::findOrFail($id);
+        return redirect('houses')->with('msg', 'La casa se ha editado correctamente');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $house = House::find($id); 
+        if(Storage::delete('public/'. $house->cover)){
+            House::destroy($id);
+        }
+        return redirect('houses')->with('msg', 'La casa se ha borrado exitosamente' );
     }
 }

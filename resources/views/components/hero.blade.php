@@ -59,7 +59,6 @@
 
                 <span class="label-medium">Buscar</span>
               </button>
-
             </form>
 
           </div>
