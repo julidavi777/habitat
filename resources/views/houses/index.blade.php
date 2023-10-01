@@ -30,7 +30,7 @@
         <div class="property-list">
             <!-- Card 1 -->
             @foreach ($houses as $house)
-            <x-card price="{{$house->price}}" company="{{$house->company}}" address="{{$house->address}}" city="{{$house->city}}" beds="{{$house->beds}}" baths="{{$house->beds}}" square_meters="{{$house->square_meters}}" src="storage/{{$house->cover}}">
+            <x-card href="{{url('/houses', $house->id)}}" price="{{$house->price}}" company="{{$house->company}}" address="{{$house->address}}" city="{{$house->city}}" beds="{{$house->beds}}" baths="{{$house->beds}}" square_meters="{{$house->square_meters}}" src="storage/{{$house->cover}}">
             </x-card>
             @endforeach
 

@@ -13,8 +13,8 @@ use App\Http\Controllers\HouseController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+ Route::get('/', function () {
+     return redirect('/houses');
+ });
 
 Route::resource('/houses', HouseController::class); 

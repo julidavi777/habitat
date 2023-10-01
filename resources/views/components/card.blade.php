@@ -1,4 +1,4 @@
-@props(['price', 'company', 'address', 'city','beds','baths','square_meters'])
+@props(['price', 'company', 'address', 'city','beds','baths','square_meters', 'id'])
 <div class="card">
 
     <div class="card-banner">
@@ -16,11 +16,10 @@
     </div>
 
     <div class="card-content">
-
-        <span class="title-large">{{$price}}</span>
+    <a  {{$attributes }} class="title-small card-title"> <span class="title-large">{{$company}}</span></a>
 
         <h3>
-            <a href="#" class="title-small card-title">{{$company}}</a>
+            {{$price}}
         </h3>
 
         <address class="body-medium card-text">
